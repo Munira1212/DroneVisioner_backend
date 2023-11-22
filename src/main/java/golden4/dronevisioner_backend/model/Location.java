@@ -1,8 +1,6 @@
 package golden4.dronevisioner_backend.model;
-
 import jakarta.persistence.*;
 import lombok.*;
-
 
 import java.util.List;
 
@@ -21,6 +19,9 @@ public class Location {
     private String streettname;
     private String streetnumber;
 
-    @OneToMany(mappedBy = "location", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "Location", cascade = CascadeType.ALL)
     private List<Appointment> appointments;
+
+    //hej
+    //hej
 }
