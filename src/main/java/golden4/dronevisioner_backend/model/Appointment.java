@@ -49,9 +49,6 @@ public class Appointment {
     private List<Location> locations;
 
 
-  /*  JsonManagedReference
-
-   */
 
 
 
