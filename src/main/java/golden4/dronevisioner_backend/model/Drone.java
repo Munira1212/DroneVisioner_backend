@@ -12,5 +12,7 @@ public class Drone {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int Drone_ID;
 
+    @OneToOne(mappedBy = "drone")
+    private Appointment appointment;
 
 }

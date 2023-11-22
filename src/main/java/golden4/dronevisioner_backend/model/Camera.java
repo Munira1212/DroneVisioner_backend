@@ -14,5 +14,9 @@ public class Camera {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int camera_ID;
 
+    @OneToOne(mappedBy = "camera")
+    private Appointment appointment;
+
+
 
 }

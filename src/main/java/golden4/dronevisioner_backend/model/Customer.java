@@ -24,6 +24,9 @@ public class Customer {
     private String phoneNumber;
 
 
+    @OneToOne(mappedBy = "customer")
+    private Appointment appointment;
+
 
 
 

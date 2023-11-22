@@ -15,10 +15,7 @@ public class Payment {
     private int Drone_ID;
     private int price;
 
-/*
-    @OneToOne
-    @JoinColumn(name = "appointmentid_fk", nullable = false)
-    //@JsonManagedReference
-    private Payment payment;
-*/
+    @OneToOne(mappedBy = "payment")
+    private Appointment appointment;
+
 }
