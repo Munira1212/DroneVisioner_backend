@@ -49,8 +49,9 @@ public class Appointment {
     private List<Location> locations;
 
 
-  /*  @OneToMany(mappedBy = "appointment", cascade = CascadeType.ALL)
-    private List<Location> locations;*/
+  /*  JsonManagedReference
+
+   */
 
 
 
