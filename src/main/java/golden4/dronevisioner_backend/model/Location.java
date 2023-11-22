@@ -21,6 +21,6 @@ public class Location {
     private String streettname;
     private String streetnumber;
 
-    @OneToMany(mappedBy = "Location", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "location", cascade = CascadeType.ALL)
     private List<Appointment> appointments;
 }
