@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -21,7 +22,7 @@ public class Appointment {
     private String location;
     private String description;
     private LocalDate date;
-    private LocalDate time;
+    private LocalDateTime time; //rettet til time
 
 
     @OneToOne
