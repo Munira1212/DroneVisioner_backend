@@ -44,11 +44,11 @@ public class Appointment {
     @JoinColumn(name = "paymentid_fk", nullable = false)
     private Payment payment;
 
-    @OneToMany
+   /* @OneToMany
     @JoinColumn(name = "locations_fk", nullable = false)
     private List<Location> locations;
 
-
+*/
 
 
 

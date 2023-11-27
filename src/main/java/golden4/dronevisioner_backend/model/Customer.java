@@ -19,9 +19,10 @@ public class Customer {
     private int customer_ID;
     private String first_Name;
     private String last_Name;
-    private LocalDate birthday;
+    private String birthday;
     private String email;
     private String phoneNumber;
+    private String registration_date;
 
 
     @OneToOne(mappedBy = "customer")
