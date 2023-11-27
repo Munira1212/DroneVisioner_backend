@@ -26,23 +26,23 @@ public class Appointment {
 
 
     @OneToOne
-    @JoinColumn(name = "droneid_fk", nullable = false)
+    @JoinColumn(name = "droneid_fk", nullable = true)
     //@JsonManagedReference
     private Drone drone;
 
 
     @OneToOne
-    @JoinColumn(name = "customerid_fk", nullable = false)
+    @JoinColumn(name = "customerid_fk", nullable = true)
     //@JsonManagedReference
     private Customer customer;
 
     @OneToOne
-    @JoinColumn(name = "cameraid_fk", nullable = false)
+    @JoinColumn(name = "cameraid_fk", nullable = true)
     //@JsonManagedReference
     private Camera camera;
 
     @OneToOne
-    @JoinColumn(name = "paymentid_fk", nullable = false)
+    @JoinColumn(name = "paymentid_fk", nullable = true)
     private Payment payment;
 
    /* @OneToMany
