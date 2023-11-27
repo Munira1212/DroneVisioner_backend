@@ -20,4 +20,6 @@ public class AppointmentController
         AppointmentDTO createdAppointment = appointmentService.createAppointment(appointmentDTO);
         return new ResponseEntity<>(createdAppointment, HttpStatus.CREATED);
     }
+
+
 }
