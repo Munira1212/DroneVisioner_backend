@@ -44,9 +44,9 @@ public class Appointment {
     @JoinColumn(name = "paymentid_fk", nullable = false)
     private Payment payment;
 
-    @OneToMany
-    @JoinColumn(name = "locations_fk", nullable = false)
-    private List<Location> locations;
+    @ManyToOne
+    @JoinColumn(name = "location_fk", nullable = false)
+    private Location locationEntity;
 
 
 

@@ -12,10 +12,11 @@ import lombok.*;
 public class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int Drone_ID;
-    private int price;
+    private int drone_ID;
+    private double price;
+
 
     @OneToOne(mappedBy = "payment")
     private Appointment appointment;
-
 }
+

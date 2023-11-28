@@ -19,7 +19,7 @@ public class Location {
     private String streettname;
     private String streetnumber;
 
-    @OneToMany(mappedBy = "Location", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "locationEntity", cascade = CascadeType.ALL)
     private List<Appointment> appointments;
 
     //hej
