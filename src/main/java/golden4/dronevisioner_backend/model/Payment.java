@@ -15,7 +15,7 @@ public class Payment {
     private int Drone_ID;
     private int price;
 
-    @OneToOne(mappedBy = "payment")
+    @OneToOne(mappedBy = "payment", cascade = CascadeType.ALL)
     private Appointment appointment;
 
 }

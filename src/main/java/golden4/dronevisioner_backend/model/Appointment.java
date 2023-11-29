@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -18,38 +19,26 @@ public class Appointment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int appointment_ID;
-    private String location;
     private String description;
     private LocalDate date;
-    private LocalDate time;
+    private LocalDateTime time;
 
 
-    @OneToOne
-    @JoinColumn(name = "droneid_fk", nullable = false)
-    //@JsonManagedReference
-    private Drone drone;
-
+    /*@ManyToOne
+    @JoinColumn(name = "captureDeviceid_fk")
+    private CaptureDevice captureDevice;*/
 
     @OneToOne
     @JoinColumn(name = "customerid_fk", nullable = false)
-    //@JsonManagedReference
     private Customer customer;
-
-    @OneToOne
-    @JoinColumn(name = "cameraid_fk", nullable = false)
-    //@JsonManagedReference
-    private Camera camera;
 
     @OneToOne
     @JoinColumn(name = "paymentid_fk", nullable = false)
     private Payment payment;
 
-    @OneToMany
-    @JoinColumn(name = "locations_fk", nullable = false)
-    private List<Location> locations;
-
-
-
+    @ManyToOne
+    @JoinColumn(name = "locations_fk")
+    private Location location;  // Updated to follow naming conventions
 
 
 }

@@ -1,9 +1,9 @@
 package golden4.dronevisioner_backend.model;
+
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
-
 
 @Entity
 @Getter
@@ -11,16 +11,13 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Location {
+public class VisualMediaType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int location_id;
-    private int postcode;
-    private String streettname;
-    private String streetnumber;
+    private int visualMediaType_ID;
+    private String  type_Name;
 
-
-    @OneToMany(mappedBy = "location", cascade = CascadeType.ALL)
-    private List<Appointment> appointments;
+   /* @OneToMany(mappedBy = "visualMediaType", cascade = CascadeType.ALL)
+    private List<CaptureDevice> captureDevices;*/
 
 }
