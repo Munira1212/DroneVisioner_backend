@@ -1,4 +1,4 @@
-package golden4.dronevisioner_backend.repo;
+package golden4.dronevisioner_backend.repository;
 
 import golden4.dronevisioner_backend.model.Appointment;
 import org.springframework.data.jpa.repository.JpaRepository;

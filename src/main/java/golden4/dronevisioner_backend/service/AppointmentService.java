@@ -3,13 +3,9 @@ package golden4.dronevisioner_backend.service;
 import golden4.dronevisioner_backend.dto.AppointmentConverter;
 import golden4.dronevisioner_backend.dto.AppointmentDTO;
 import golden4.dronevisioner_backend.model.Appointment;
-import golden4.dronevisioner_backend.repo.AppointmentRepository;
+import golden4.dronevisioner_backend.repository.AppointmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
 
 @Service
 public class AppointmentService
