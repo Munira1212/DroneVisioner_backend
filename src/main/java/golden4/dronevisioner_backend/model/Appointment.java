@@ -24,19 +24,14 @@ public class Appointment {
     private LocalDate time;
 
 
-    /*@ManyToOne
+    @ManyToOne
     @JoinColumn(name = "captureDeviceid_fk")
-    private CaptureDevice captureDevice;*/
+    private CaptureDevice captureDevice;
 
     @OneToOne
     @JoinColumn(name = "customerid_fk", nullable = false)
     //@JsonManagedReference
     private Customer customer;
-
-    @OneToOne
-    @JoinColumn(name = "cameraid_fk", nullable = false)
-    //@JsonManagedReference
-    private Camera camera;
 
     @OneToOne
     @JoinColumn(name = "paymentid_fk", nullable = false)
