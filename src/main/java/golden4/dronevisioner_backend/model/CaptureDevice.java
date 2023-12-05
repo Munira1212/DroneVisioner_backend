@@ -20,8 +20,6 @@ public class CaptureDevice {
     private String version;
 
 
-   /* @OneToMany(mappedBy = "captureDevice", cascade = CascadeType.ALL)
-    private List<Appointment> appointments;*/
 
     @ManyToOne
     @JoinColumn(name = "visualMediaTypefk_ID")
