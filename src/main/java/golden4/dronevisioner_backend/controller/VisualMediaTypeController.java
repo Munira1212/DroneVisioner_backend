@@ -15,14 +15,6 @@ public class VisualMediaTypeController {
 @Autowired
     VisualMediaTypeService visualMediaTypeService;
 
-  /*  @PostMapping("/visualMediaType")
-    @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<VisualMediaTypeDTO> createVisualMediaType(@RequestBody VisualMediaTypeDTO visualMediaTypeDTO){
-        System.out.println(visualMediaTypeDTO);
-        VisualMediaTypeDTO createVisualMediaType = visualMediaTypeService.createVisualMediaType(visualMediaTypeDTO);
-        return new ResponseEntity<>(createVisualMediaType, HttpStatus.CREATED);
-
-    }*/
 
 
     @GetMapping("/visualMediaType")
