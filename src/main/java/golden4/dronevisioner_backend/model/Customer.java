@@ -25,7 +25,7 @@ public class Customer {
     private String registration_date;
 
 
-   @OneToOne(mappedBy = "customer", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "customer", cascade = CascadeType.ALL)
     private Appointment appointment;
 
 

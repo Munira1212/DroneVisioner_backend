@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 
@@ -21,7 +22,7 @@ public class Appointment {
     private String location;
     private String description;
     private LocalDate date;
-    private LocalDate time;
+    private LocalTime time;
 
 
     @ManyToOne
@@ -29,17 +30,15 @@ public class Appointment {
     private CaptureDevice captureDevice;
 
     @OneToOne
-    @JoinColumn(name = "customerid_fk", nullable = false)
+    @JoinColumn(name = "customerid_fk")
     //@JsonManagedReference
     private Customer customer;
 
     @OneToOne
-    @JoinColumn(name = "paymentid_fk", nullable = false)
+    @JoinColumn(name = "paymentid_fk")
     private Payment payment;
 
-    @OneToMany
-    @JoinColumn(name = "locations_fk", nullable = false)
-    private List<Location> locations;
+
 
 
 
