@@ -33,9 +33,9 @@ public class AppointmentController {
     }
 
     @DeleteMapping("/delete/{appointment_ID}")
-    public ResponseEntity deleteAppointmentAndCustomers(@PathVariable int appointment_ID){
-        appointmentService.deleteAppointmentAndCustomers(appointment_ID);
+    public ResponseEntity deleteAppointment(@PathVariable int appointment_ID){
+        appointmentService.deleteAppointment(appointment_ID);
       //  return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Appointment with id " + appointment_ID + " was deleted");
-        return ResponseEntity.ok("Showtime with id " + appointment_ID + " was deleted");
+        return ResponseEntity.ok("appointment with id " + appointment_ID + " was deleted");
     }
 }

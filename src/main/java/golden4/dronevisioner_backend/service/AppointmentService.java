@@ -6,7 +6,6 @@ import golden4.dronevisioner_backend.model.Appointment;
 import golden4.dronevisioner_backend.repository.AppointmentRepository;
 import golden4.dronevisioner_backend.repository.CustomerRepository;
 import jakarta.transaction.Transactional;
-import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,14 +17,13 @@ import java.util.Optional;
 public class AppointmentService
 {
     private final AppointmentRepository appointmentRepository;
-    private final CustomerRepository customerRepository;
+
     private final AppointmentConverter appointmentConverter;
 
     @Autowired
-    public AppointmentService(AppointmentRepository appointmentRepository, CustomerRepository customerRepository, AppointmentConverter appointmentConverter){
+    public AppointmentService(AppointmentRepository appointmentRepository, AppointmentConverter appointmentConverter){
 
         this.appointmentRepository = appointmentRepository;
-        this.customerRepository = customerRepository;
         this.appointmentConverter = appointmentConverter;
     }
 
@@ -51,14 +49,14 @@ public class AppointmentService
         return appointments.map(appointmentConverter::toDTO);
     }
 
-    @Transactional
-    public void deleteAppointmentAndCustomers(int appointmentId) {
 
+    public Appointment deleteAppointment(int appointmentId) {
         Optional<Appointment> optionalAppointment = appointmentRepository.findById(appointmentId);
-
         if (optionalAppointment.isPresent()) {
             appointmentRepository.deleteById(appointmentId);
+
             System.out.println("Deleted appointment with id: " + appointmentId);
+            return optionalAppointment.get();
         } else {
             throw new IllegalArgumentException("Appointment not found with id: " + appointmentId);
         }
