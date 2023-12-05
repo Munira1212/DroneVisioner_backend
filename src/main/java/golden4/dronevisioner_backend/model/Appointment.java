@@ -5,7 +5,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
 
 
@@ -26,16 +25,32 @@ public class Appointment {
 
 
     @OneToOne
-    @JoinColumn(name = "capture_deviceid_fk")
+    @JoinColumn(name = "captureDeviceid_fk")
     private CaptureDevice captureDevice;
 
     @OneToOne
     @JoinColumn(name = "customerid_fk")
-    //@JsonManagedReference
+    @JsonManagedReference
     private Customer customer;
 
     @OneToOne
     @JoinColumn(name = "paymentid_fk")
     private Payment payment;
+
+
+
+    @Override
+    public String toString() {
+        return "Appointment{" +
+                "appointment_ID=" + appointment_ID +
+                ", location='" + location + '\'' +
+                ", description='" + description + '\'' +
+                ", date=" + date +
+                ", time=" + time +
+                // Assuming customer is an object
+                '}';
+    }
+
+
 
 }

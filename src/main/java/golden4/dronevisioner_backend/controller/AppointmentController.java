@@ -1,9 +1,6 @@
 package golden4.dronevisioner_backend.controller;
 
 import golden4.dronevisioner_backend.dto.AppointmentDTO;
-import golden4.dronevisioner_backend.dto.CaptureDeviceDTO;
-import golden4.dronevisioner_backend.model.Appointment;
-import golden4.dronevisioner_backend.model.CaptureDevice;
 import golden4.dronevisioner_backend.service.AppointmentService;
 import golden4.dronevisioner_backend.service.CaptureDeviceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,22 +11,37 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin
 @RestController
 @RequestMapping("/appointment")
-public class AppointmentController
-{
+public class AppointmentController {
 
-    @Autowired
-    AppointmentService appointmentService;
+    private final AppointmentService appointmentService;
     @Autowired
     private CaptureDeviceService captureDeviceService;
 
 
-   /* @PostMapping()
+    @Autowired
+    public AppointmentController(AppointmentService appointmentService) {
+        this.appointmentService = appointmentService;
+    }
+
+
+    @PostMapping()
     public ResponseEntity<AppointmentDTO> makeAppointment(@RequestBody AppointmentDTO appointmentDTO) {
         AppointmentDTO createdAppointment = appointmentService.createAppointment(appointmentDTO);
-        System.out.println(createdAppointment);
         return new ResponseEntity<>(createdAppointment, HttpStatus.CREATED);
-    }*/
+    }
 
+    @GetMapping("getAllAppointments")
+    public ResponseEntity getAppointmentWithCustomerANDPayment(Pageable pageable) {
+        return new ResponseEntity<>(appointmentService.getAppointmentWithCustomerANDPayment( pageable), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/delete/{appointment_ID}")
+    public ResponseEntity deleteAppointment(@PathVariable int appointment_ID){
+        appointmentService.deleteAppointment(appointment_ID);
+      //  return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Appointment with id " + appointment_ID + " was deleted");
+        return ResponseEntity.ok("appointment with id " + appointment_ID + " was deleted");
+    }
+}
 
     /*public ResponseEntity<AppointmentDTO> createAppointment(@RequestBody AppointmentDTO appointmentDTO) {
         try {
@@ -46,4 +58,3 @@ public class AppointmentController
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }*/
-}

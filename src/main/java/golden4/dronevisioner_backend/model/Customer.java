@@ -25,8 +25,9 @@ public class Customer {
     private String registration_date;
 
 
-    @OneToOne(mappedBy = "customer", cascade = CascadeType.ALL)
-    private Appointment appointment;
+   @OneToOne(mappedBy = "customer", cascade = CascadeType.ALL)
+   @JsonBackReference
+   private Appointment appointment;
 
 
 
