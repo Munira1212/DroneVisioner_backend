@@ -14,6 +14,7 @@ public class AppointmentConverter {
         appointment.setDescription(appointmentDTO.description());
         appointment.setDate(appointmentDTO.date());
         appointment.setTime(appointmentDTO.time());
+        appointment.setCaptureDevice(appointmentDTO.captureDevice());
 
         return appointment;
     }
@@ -26,7 +27,8 @@ public class AppointmentConverter {
                 appointment.getLocation(),
                 appointment.getDescription(),
                 appointment.getDate(),
-                appointment.getTime());
+                appointment.getTime(),
+                appointment.getCaptureDevice());
     }
 
 }

@@ -1,5 +1,6 @@
 package golden4.dronevisioner_backend.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -19,8 +20,9 @@ public class CaptureDevice {
     private String version;
 
 
-   /* @OneToMany(mappedBy = "captureDevice", cascade = CascadeType.ALL)
-    private List<Appointment> appointments;*/
+   @OneToOne(mappedBy = "captureDevice", cascade = CascadeType.ALL)
+   @JsonBackReference
+    private Appointment appointment;
 
     @ManyToOne
     @JoinColumn(name = "visualMediaTypefk_ID")

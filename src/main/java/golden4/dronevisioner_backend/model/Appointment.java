@@ -25,8 +25,8 @@ public class Appointment {
     private LocalTime time;
 
 
-    @ManyToOne
-    @JoinColumn(name = "captureDeviceid_fk")
+    @OneToOne
+    @JoinColumn(name = "capture_deviceid_fk")
     private CaptureDevice captureDevice;
 
     @OneToOne
@@ -37,11 +37,5 @@ public class Appointment {
     @OneToOne
     @JoinColumn(name = "paymentid_fk")
     private Payment payment;
-
-
-
-
-
-
 
 }
