@@ -19,5 +19,4 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Intege
   Page<Appointment> getAppointmentWithCustomerANDPayment(Pageable pageable);
 
 
-
 }

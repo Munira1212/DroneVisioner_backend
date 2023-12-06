@@ -9,6 +9,7 @@ import java.time.LocalDate;
 public class AppointmentConverter {
     public Appointment toEntity(AppointmentDTO appointmentDTO) {
         Appointment appointment = new Appointment();
+
         appointment.setAppointment_ID(appointmentDTO.appointment_ID());
         appointment.setLocation(appointmentDTO.location());
         appointment.setDescription(appointmentDTO.description());
@@ -30,9 +31,8 @@ public class AppointmentConverter {
                 appointment.getDescription(),
                 appointment.getDate(),
                 appointment.getTime(),
-               appointment.getCustomer());
+               appointment.getCustomer(),
                 //appointment.getPayment());
-                appointment.getTime(),
                 appointment.getCaptureDevice());
     }
 

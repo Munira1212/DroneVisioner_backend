@@ -36,5 +36,20 @@ public class CaptureDeviceController {
 
     }
 
+   /* @GetMapping("/captureDevice/{id}")
+    public ResponseEntity getCaptureDeviceByID(@PathVariable int id) {
+        return new ResponseEntity<>(captureDeviceService.getCaptureDeviceByID() , HttpStatus.OK);
+    }*/
+    @GetMapping("captureDevice/{captureDeviceId}")
+    public ResponseEntity<CaptureDeviceDTO> getCaptureDeviceById(@PathVariable int captureDeviceId) {
+        try {
+            CaptureDeviceDTO captureDeviceDTO = captureDeviceService.getCaptureDeviceById(captureDeviceId);
+            return ResponseEntity.ok(captureDeviceDTO);
+        } catch (Exception e) {
+            // Handle exceptions, e.g., captureDevice not found
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 
 }

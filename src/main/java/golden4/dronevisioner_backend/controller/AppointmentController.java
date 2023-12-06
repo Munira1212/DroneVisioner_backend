@@ -1,9 +1,11 @@
 package golden4.dronevisioner_backend.controller;
 
 import golden4.dronevisioner_backend.dto.AppointmentDTO;
+import golden4.dronevisioner_backend.dto.CaptureDeviceDTO;
 import golden4.dronevisioner_backend.service.AppointmentService;
 import golden4.dronevisioner_backend.service.CaptureDeviceService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,21 +16,33 @@ import org.springframework.web.bind.annotation.*;
 public class AppointmentController {
 
     private final AppointmentService appointmentService;
-    @Autowired
-    private CaptureDeviceService captureDeviceService;
+
+    private final CaptureDeviceService captureDeviceService;
 
 
+
     @Autowired
-    public AppointmentController(AppointmentService appointmentService) {
+    public AppointmentController(AppointmentService appointmentService, CaptureDeviceService captureDeviceService) {
         this.appointmentService = appointmentService;
+        this.captureDeviceService = captureDeviceService;
     }
 
 
+    @PostMapping("/captureDevice")
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<CaptureDeviceDTO> createCaptureDevice(@RequestBody CaptureDeviceDTO captureDeviceDTO){
+        System.out.println(captureDeviceDTO);
+        CaptureDeviceDTO createCaptureDevice = captureDeviceService.createCaptureDevice(captureDeviceDTO);
+        return new ResponseEntity<>(createCaptureDevice, HttpStatus.CREATED);
+
+    }
     @PostMapping()
     public ResponseEntity<AppointmentDTO> makeAppointment(@RequestBody AppointmentDTO appointmentDTO) {
-        AppointmentDTO createdAppointment = appointmentService.createAppointment(appointmentDTO);
+        System.out.println(appointmentDTO);
+         AppointmentDTO createdAppointment = appointmentService.createAppointment(appointmentDTO);
         return new ResponseEntity<>(createdAppointment, HttpStatus.CREATED);
     }
+
 
     @GetMapping("getAllAppointments")
     public ResponseEntity getAppointmentWithCustomerANDPayment(Pageable pageable) {
@@ -41,8 +55,25 @@ public class AppointmentController {
       //  return ResponseEntity.status(HttpStatus.NO_CONTENT).body("Appointment with id " + appointment_ID + " was deleted");
         return ResponseEntity.ok("appointment with id " + appointment_ID + " was deleted");
     }
-}
 
+    @GetMapping("/getAppointmentBy/{appointment_ID}")
+    public ResponseEntity<AppointmentDTO> getAppointmentById(@PathVariable int appointment_ID) {
+        try {
+            AppointmentDTO appointmentDTO = appointmentService.getAppointmentById(appointment_ID);
+            return ResponseEntity.ok(appointmentDTO);
+        } catch (Exception e) {
+            // Handle exceptions, e.g., captureDevice not found
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+
+    @PutMapping("/updateAppointment/{id}")
+    public ResponseEntity<AppointmentDTO> updateMovie(@PathVariable("id") int id, @RequestBody AppointmentDTO appointmentDTO) {
+        AppointmentDTO updatedAppointment= appointmentService.updateAppointment(id, appointmentDTO);
+        return new ResponseEntity<>(updatedAppointment, HttpStatus.OK);
+    }
+}
     /*public ResponseEntity<AppointmentDTO> createAppointment(@RequestBody AppointmentDTO appointmentDTO) {
         try {
             // Save the CaptureDevice first

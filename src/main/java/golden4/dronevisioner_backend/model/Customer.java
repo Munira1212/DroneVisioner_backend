@@ -1,6 +1,7 @@
 package golden4.dronevisioner_backend.model;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 

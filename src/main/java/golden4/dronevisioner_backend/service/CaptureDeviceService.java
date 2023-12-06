@@ -3,12 +3,17 @@ package golden4.dronevisioner_backend.service;
 import golden4.dronevisioner_backend.dto.CaptureDeviceConverter;
 import golden4.dronevisioner_backend.dto.CaptureDeviceDTO;
 import golden4.dronevisioner_backend.dto.VisualMediaTypeConverter;
+import golden4.dronevisioner_backend.dto.VisualMediaTypeDTO;
 import golden4.dronevisioner_backend.model.CaptureDevice;
+import golden4.dronevisioner_backend.model.VisualMediaType;
 import golden4.dronevisioner_backend.repository.CaptureDeviceRepository;
 import golden4.dronevisioner_backend.repository.VisualMediaTypeRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import java.util.List;
 
 @Service
 public class CaptureDeviceService {
@@ -53,6 +58,25 @@ public class CaptureDeviceService {
         // Convert the saved entity back to DTO
         return captureDeviceConverter.toDTO(savedCaptureDevice);
     }
+
+
+
+
+    /*public List<CaptureDeviceDTO> getCaptureDeviceByID(int id){
+        List<CaptureDevice> getCaptureDeviceByID = captureDeviceRepository.findAllById(id);
+
+        return getCaptureDeviceByID.stream().map(captureDeviceConverter::toDTO).toList();
+    }*/
+
+
+    public CaptureDeviceDTO getCaptureDeviceById(int captureDeviceId) {
+        CaptureDevice captureDevice = captureDeviceRepository.findById(captureDeviceId)
+                .orElseThrow(() -> new RuntimeException("CaptureDevice not found"));
+
+        return captureDeviceConverter.toDTO(captureDevice);
+               // convertEntityToDTO(captureDevice);
+    }
+
 
 }
 

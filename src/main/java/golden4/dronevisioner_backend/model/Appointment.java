@@ -1,10 +1,12 @@
 package golden4.dronevisioner_backend.model;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 
@@ -27,6 +29,7 @@ public class Appointment {
     @OneToOne
     @JoinColumn(name = "captureDeviceid_fk")
     private CaptureDevice captureDevice;
+
 
     @OneToOne
     @JoinColumn(name = "customerid_fk")
