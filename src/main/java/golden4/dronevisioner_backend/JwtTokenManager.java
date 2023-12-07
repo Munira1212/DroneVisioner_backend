@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
+import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
@@ -36,8 +37,15 @@ public class JwtTokenManager
     //The old code snippet extracts a secret key (pre defined) from a Base64-encoded string (jwtSecret).
     // The new code snippet generates a new secret key directly. Switching to the second snippet
     // simplifies key handling for login.
-    private Key getSignInKey() {
+
+    /*private Key getSignInKey() {
         return Keys.secretKeyFor(SignatureAlgorithm.HS512);
+    }*/
+
+    //bruger rent faktisk jwtSecret
+    private Key getSignInKey() {
+        // Use the string directly as the key (assuming it's a valid key)
+        return Keys.hmacShaKeyFor(jwtSecret.getBytes(StandardCharsets.UTF_8));
     }
 
     public Boolean validateJwtToken(String token, UserDetails userDetails) {
