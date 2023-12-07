@@ -13,9 +13,9 @@ public class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int Drone_ID;
-    private int price;
+    private double price;
 
-    @OneToOne(mappedBy = "payment")
-    private Appointment appointment;
+    /*@OneToOne(mappedBy = "payment", cascade = CascadeType.ALL)
+    private Appointment appointment;*/
 
 }

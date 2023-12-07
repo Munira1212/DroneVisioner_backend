@@ -1,11 +1,11 @@
 package golden4.dronevisioner_backend.model;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -23,34 +23,36 @@ public class Appointment {
     private String location;
     private String description;
     private LocalDate date;
-    private LocalTime time; //rettet til time
+    private LocalTime time;
 
 
     @OneToOne
-    @JoinColumn(name = "droneid_fk", nullable = true)
-    //@JsonManagedReference
-    private Drone drone;
+    @JoinColumn(name = "captureDeviceid_fk")
+    private CaptureDevice captureDevice;
 
 
     @OneToOne
-    @JoinColumn(name = "customerid_fk", nullable = true)
-    //@JsonManagedReference
+    @JoinColumn(name = "customerid_fk")
+    @JsonManagedReference
     private Customer customer;
 
     @OneToOne
-    @JoinColumn(name = "cameraid_fk", nullable = true)
-    //@JsonManagedReference
-    private Camera camera;
-
-    @OneToOne
-    @JoinColumn(name = "paymentid_fk", nullable = true)
+    @JoinColumn(name = "paymentid_fk")
     private Payment payment;
 
-   /* @OneToMany
-    @JoinColumn(name = "locations_fk", nullable = false)
-    private List<Location> locations;
 
-*/
+
+    @Override
+    public String toString() {
+        return "Appointment{" +
+                "appointment_ID=" + appointment_ID +
+                ", location='" + location + '\'' +
+                ", description='" + description + '\'' +
+                ", date=" + date +
+                ", time=" + time +
+                // Assuming customer is an object
+                '}';
+    }
 
 
 

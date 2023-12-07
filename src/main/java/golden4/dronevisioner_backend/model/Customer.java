@@ -1,6 +1,7 @@
 package golden4.dronevisioner_backend.model;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -25,8 +26,9 @@ public class Customer {
     private String registration_date;
 
 
-    @OneToOne(mappedBy = "customer")
-    private Appointment appointment;
+   @OneToOne(mappedBy = "customer", cascade = CascadeType.ALL)
+   @JsonBackReference
+   private Appointment appointment;
 
 
 
