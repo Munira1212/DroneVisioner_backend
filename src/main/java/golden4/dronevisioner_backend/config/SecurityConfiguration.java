@@ -6,6 +6,7 @@ import golden4.dronevisioner_backend.JwtFilter;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -52,9 +53,24 @@ public class SecurityConfiguration implements WebMvcConfigurer {
                 .requestMatchers(new AntPathRequestMatcher("/signup/*")).permitAll()
                 .requestMatchers(new AntPathRequestMatcher("/signup/**")).permitAll()
                 .requestMatchers(new AntPathRequestMatcher("/signup/")).permitAll()
-                .requestMatchers(new AntPathRequestMatcher("/frontPageInternal/*")).permitAll()
-                .requestMatchers(new AntPathRequestMatcher("/frontPageInternal/**")).permitAll()
-                .requestMatchers(new AntPathRequestMatcher("/frontPageInternal/")).permitAll()
+
+                .requestMatchers(new AntPathRequestMatcher("/appointment")).permitAll()
+                .requestMatchers(new AntPathRequestMatcher("/appointment/*")).permitAll()
+                .requestMatchers(new AntPathRequestMatcher("/appointment/**")).permitAll()
+                .requestMatchers(new AntPathRequestMatcher("/captureDevice")).permitAll()
+                .requestMatchers(new AntPathRequestMatcher("/captureDevice/*")).permitAll()
+                .requestMatchers(new AntPathRequestMatcher("/captureDevice/**")).permitAll()
+                .requestMatchers(new AntPathRequestMatcher("/visualMediaType")).permitAll()
+                .requestMatchers(new AntPathRequestMatcher("/visualMediaType/*")).permitAll()
+                .requestMatchers(new AntPathRequestMatcher("/visualMediaType/**")).permitAll()
+                .requestMatchers(new AntPathRequestMatcher("/PostVisualMediaType")).permitAll()
+                .requestMatchers(new AntPathRequestMatcher("/PostVisualMediaType/*")).permitAll()
+                .requestMatchers(new AntPathRequestMatcher("/PostVisualMediaType/**")).permitAll()
+
+
+                //.requestMatchers(new AntPathRequestMatcher("/**", HttpMethod.OPTIONS.name())).permitAll()
+
+
 
 
 

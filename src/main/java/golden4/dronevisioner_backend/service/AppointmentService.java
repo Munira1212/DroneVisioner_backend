@@ -8,12 +8,17 @@ import golden4.dronevisioner_backend.model.CaptureDevice;
 import golden4.dronevisioner_backend.repository.AppointmentRepository;
 import golden4.dronevisioner_backend.repository.CaptureDeviceRepository;
 import jakarta.persistence.EntityNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+
 
 @Service
 public class AppointmentService
@@ -52,12 +57,13 @@ public class AppointmentService
 
 
 
-
-
-        public Page<AppointmentDTO> getAllAppointments(Pageable pageable) {
-        Page<Appointment> appointmentsPage = appointmentRepository.findAll(pageable);
-        return appointmentsPage.map(appointmentConverter::toDTO);
+    public List<LocalDate> getBookedDates() {
+        List<Appointment> appointments = appointmentRepository.findAll();
+        return appointments.stream()
+                .map(Appointment::getDate)
+                .collect(Collectors.toList());
     }
+
 
     public Page<AppointmentDTO> getAppointmentWithCustomerANDPayment(Pageable pageable) {
         Page<Appointment> appointments = appointmentRepository.getAppointmentWithCustomerANDPayment(pageable);

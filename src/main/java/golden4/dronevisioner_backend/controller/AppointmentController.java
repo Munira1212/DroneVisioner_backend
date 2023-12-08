@@ -10,6 +10,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.util.List;
+
 @CrossOrigin
 @RestController
 @RequestMapping("/appointment")
@@ -28,14 +31,8 @@ public class AppointmentController {
     }
 
 
-    @PostMapping("/captureDevice")
-    @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<CaptureDeviceDTO> createCaptureDevice(@RequestBody CaptureDeviceDTO captureDeviceDTO){
-        System.out.println(captureDeviceDTO);
-        CaptureDeviceDTO createCaptureDevice = captureDeviceService.createCaptureDevice(captureDeviceDTO);
-        return new ResponseEntity<>(createCaptureDevice, HttpStatus.CREATED);
 
-    }
+
     @PostMapping()
     public ResponseEntity<AppointmentDTO> makeAppointment(@RequestBody AppointmentDTO appointmentDTO) {
         System.out.println(appointmentDTO);
@@ -43,6 +40,11 @@ public class AppointmentController {
         return new ResponseEntity<>(createdAppointment, HttpStatus.CREATED);
     }
 
+    @GetMapping("/booked-dates")
+    public ResponseEntity<List<LocalDate>> getBookedDates() {
+        List<LocalDate> bookedDates = appointmentService.getBookedDates();
+        return new ResponseEntity<>(bookedDates, HttpStatus.OK);
+    }
 
     @GetMapping("getAllAppointments")
     public ResponseEntity getAppointmentWithCustomerANDPayment(Pageable pageable) {
