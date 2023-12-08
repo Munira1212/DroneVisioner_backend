@@ -91,11 +91,11 @@ public class AppointmentService
     }
 
 
-    public AppointmentDTO updateAppointment(int id, AppointmentDTO appointmentDTO) {
+    public AppointmentDTO updateAppointment(int appointment_ID, AppointmentDTO appointmentDTO) {
         Optional<Appointment> optionalAppointment = appointmentRepository.findById(appointmentDTO.appointment_ID());
         if (optionalAppointment.isPresent()) {
             Appointment appointmentToUpdate = appointmentConverter.toEntity(appointmentDTO);
-            appointmentToUpdate.setAppointment_ID(id);
+            appointmentToUpdate.setAppointment_ID(appointment_ID);
             appointmentRepository.save(appointmentToUpdate);
             return appointmentConverter.toDTO(appointmentToUpdate);
         } else {
