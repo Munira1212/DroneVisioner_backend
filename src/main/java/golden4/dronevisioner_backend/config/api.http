@@ -1,1 +1,2 @@
-http://localhost:8085/all
+http://localhost:8085/appointment/getAllAppointments
+
