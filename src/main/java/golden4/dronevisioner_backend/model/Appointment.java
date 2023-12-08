@@ -30,13 +30,13 @@ public class Appointment {
     private CaptureDevice captureDevice;
 
     @OneToOne
-    @JoinColumn(name = "customerid_fk", nullable = false)
+    @JoinColumn(name = "customerid_fk")
     //@JsonManagedReference
     private Customer customer;
 
 
     @OneToOne
-    @JoinColumn(name = "paymentid_fk", nullable = false)
+    @JoinColumn(name = "paymentid_fk")
     private Payment payment;
 
 

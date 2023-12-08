@@ -12,7 +12,7 @@ import lombok.*;
 public class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int Drone_ID;
+    private int captureDevice_ID;
     private double price;
 
     @OneToOne(mappedBy = "payment", cascade = CascadeType.ALL)
