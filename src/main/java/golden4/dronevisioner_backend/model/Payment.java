@@ -15,7 +15,7 @@ public class Payment {
     private int captureDevice_ID;
     private double price;
 
-    @OneToOne(mappedBy = "payment", cascade = CascadeType.ALL)
-    private Appointment appointment;
+    /*@OneToOne(mappedBy = "payment", cascade = CascadeType.ALL)
+    private Appointment appointment;*/
 
 }

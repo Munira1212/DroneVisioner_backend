@@ -8,9 +8,12 @@ import golden4.dronevisioner_backend.model.CaptureDevice;
 import golden4.dronevisioner_backend.model.VisualMediaType;
 import golden4.dronevisioner_backend.repository.CaptureDeviceRepository;
 import golden4.dronevisioner_backend.repository.VisualMediaTypeRepository;
-import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import java.util.List;
 
 @Service
 public class CaptureDeviceService {
@@ -41,6 +44,37 @@ public class CaptureDeviceService {
         CaptureDevice captureDeviceToSave = captureDeviceConverter.toEntity(captureDeviceDTO);
         CaptureDevice savedCaptureDevice = captureDeviceRepository.save(captureDeviceToSave);
         return captureDeviceConverter.toDTO(savedCaptureDevice);
+    }
+
+    @Transactional
+    public CaptureDeviceDTO saveCaptureDevice(CaptureDeviceDTO captureDeviceDTO) {
+        System.out.println("saveCaptureDevice: " + captureDeviceDTO);
+        // Convert the DTO to an entity
+        CaptureDevice captureDeviceToSave = captureDeviceConverter.toEntity(captureDeviceDTO);
+
+        // Save the CaptureDevice entity
+        CaptureDevice savedCaptureDevice = captureDeviceRepository.save(captureDeviceToSave);
+
+        // Convert the saved entity back to DTO
+        return captureDeviceConverter.toDTO(savedCaptureDevice);
+    }
+
+
+
+
+    /*public List<CaptureDeviceDTO> getCaptureDeviceByID(int id){
+        List<CaptureDevice> getCaptureDeviceByID = captureDeviceRepository.findAllById(id);
+
+        return getCaptureDeviceByID.stream().map(captureDeviceConverter::toDTO).toList();
+    }*/
+
+
+    public CaptureDeviceDTO getCaptureDeviceById(int captureDeviceId) {
+        CaptureDevice captureDevice = captureDeviceRepository.findById(captureDeviceId)
+                .orElseThrow(() -> new RuntimeException("CaptureDevice not found"));
+
+        return captureDeviceConverter.toDTO(captureDevice);
+               // convertEntityToDTO(captureDevice);
     }
 
 
