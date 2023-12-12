@@ -15,7 +15,7 @@ import java.util.Optional;
 
 public interface AppointmentRepository extends JpaRepository<Appointment, Integer> {
 
-  @Query("SELECT a FROM Appointment a JOIN a.customer c")
+  @Query("SELECT a FROM Appointment a JOIN a.customer")
   Page<Appointment> getAppointmentWithCustomerANDPayment(Pageable pageable);
 
 

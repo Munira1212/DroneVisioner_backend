@@ -68,9 +68,9 @@ public class AppointmentController {
     }
 
 
-    @PutMapping("/updateAppointment/{id}")
-    public ResponseEntity<AppointmentDTO> updateMovie(@PathVariable("id") int id, @RequestBody AppointmentDTO appointmentDTO) {
-        AppointmentDTO updatedAppointment= appointmentService.updateAppointment(id, appointmentDTO);
+    @PutMapping("/updateAppointment/{appointment_ID}")
+    public ResponseEntity<AppointmentDTO> updateMovie(@PathVariable("appointment_ID") int appointment_ID, @RequestBody AppointmentDTO appointmentDTO) {
+        AppointmentDTO updatedAppointment= appointmentService.updateAppointment(appointment_ID, appointmentDTO);
         return new ResponseEntity<>(updatedAppointment, HttpStatus.OK);
     }
 
