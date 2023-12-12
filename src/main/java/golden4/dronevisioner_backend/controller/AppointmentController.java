@@ -73,6 +73,19 @@ public class AppointmentController {
         AppointmentDTO updatedAppointment= appointmentService.updateAppointment(id, appointmentDTO);
         return new ResponseEntity<>(updatedAppointment, HttpStatus.OK);
     }
+
+
+
+    @GetMapping("/booked-dates")
+    public ResponseEntity<List<LocalDate>> getBookedDates() {
+        List<LocalDate> bookedDates = appointmentService.getBookedDates();
+        return new ResponseEntity<>(bookedDates, HttpStatus.OK);
+    }
+
+
+
+
+
 }
     /*public ResponseEntity<AppointmentDTO> createAppointment(@RequestBody AppointmentDTO appointmentDTO) {
         try {
