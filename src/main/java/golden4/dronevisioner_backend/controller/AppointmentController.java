@@ -2,6 +2,8 @@ package golden4.dronevisioner_backend.controller;
 
 import golden4.dronevisioner_backend.dto.AppointmentDTO;
 import golden4.dronevisioner_backend.dto.CaptureDeviceDTO;
+import golden4.dronevisioner_backend.model.Appointment;
+import golden4.dronevisioner_backend.repository.AppointmentRepository;
 import golden4.dronevisioner_backend.service.AppointmentService;
 import golden4.dronevisioner_backend.service.CaptureDeviceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @CrossOrigin
 @RestController
 @RequestMapping("/appointment")
@@ -17,13 +23,15 @@ public class AppointmentController {
 
     private final AppointmentService appointmentService;
 
+    private final AppointmentRepository appointmentRepository;
     private final CaptureDeviceService captureDeviceService;
 
 
 
     @Autowired
-    public AppointmentController(AppointmentService appointmentService, CaptureDeviceService captureDeviceService) {
+    public AppointmentController(AppointmentService appointmentService, AppointmentRepository appointmentRepository, CaptureDeviceService captureDeviceService) {
         this.appointmentService = appointmentService;
+        this.appointmentRepository = appointmentRepository;
         this.captureDeviceService = captureDeviceService;
     }
 
@@ -73,6 +81,20 @@ public class AppointmentController {
         AppointmentDTO updatedAppointment= appointmentService.updateAppointment(appointment_ID, appointmentDTO);
         return new ResponseEntity<>(updatedAppointment, HttpStatus.OK);
     }
+
+
+
+    public List<LocalDate> getBookedDates() {
+        List<Appointment> appointments = appointmentRepository.findAll();
+        return appointments.stream()
+                .map(Appointment::getDate)
+                .collect(Collectors.toList());
+    }
+
+
+
+
+
 }
     /*public ResponseEntity<AppointmentDTO> createAppointment(@RequestBody AppointmentDTO appointmentDTO) {
         try {
