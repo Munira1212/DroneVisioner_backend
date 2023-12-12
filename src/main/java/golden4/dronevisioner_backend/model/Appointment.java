@@ -15,7 +15,6 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 public class Appointment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,17 +41,7 @@ public class Appointment {
 
 
 
-    @Override
-    public String toString() {
-        return "Appointment{" +
-                "appointment_ID=" + appointment_ID +
-                ", location='" + location + '\'' +
-                ", description='" + description + '\'' +
-                ", date=" + date +
-                ", time=" + time +
-                // Assuming customer is an object
-                '}';
-    }
+
 
 
 
