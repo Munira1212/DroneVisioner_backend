@@ -7,14 +7,14 @@ public class PaymentConverter {
 
     public Payment toEntity(PaymentDTO paymentDTO) {
         Payment payment = new Payment();
-        payment.setDrone_ID(paymentDTO.drone_ID());
+        payment.setCaptureDevice_ID(paymentDTO.drone_ID());
         payment.setPrice((int) paymentDTO.price());
         return payment;
     }
 
     public PaymentDTO toDTO(Payment payment) {
         return new PaymentDTO(
-                payment.getDrone_ID(),
+                payment.getCaptureDevice_ID(),
                 payment.getPrice());
 
     }

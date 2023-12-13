@@ -51,6 +51,7 @@ public class AppointmentController {
         return new ResponseEntity<>(createdAppointment, HttpStatus.CREATED);
     }
 
+    //lave en update til appointment
 
     @GetMapping("getAllAppointments")
     public ResponseEntity getAppointmentWithCustomerANDPayment(Pageable pageable) {
