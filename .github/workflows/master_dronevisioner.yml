@@ -29,7 +29,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: java-app
-          path: '${{ github.workspace }}/target/droneVisioner.jar'
+          path: '${{ github.workspace }}/target/*.jar'
           retention-days: 1
 
   deploy:
@@ -51,5 +51,5 @@ jobs:
         with:
           app-name: 'droneVisioner'
           slot-name: 'Production'
-          package: 'DroneVisioner_backend.jar'
+          package: '*.jar'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_BF521E0A623A400B85D202616642DC92 }}
