@@ -55,7 +55,15 @@ public class SecurityConfiguration implements WebMvcConfigurer {
                 .requestMatchers(new AntPathRequestMatcher("/frontPageInternal/*")).permitAll()
                 .requestMatchers(new AntPathRequestMatcher("/frontPageInternal/**")).permitAll()
                 .requestMatchers(new AntPathRequestMatcher("/frontPageInternal/")).permitAll()
-
+                .requestMatchers(new AntPathRequestMatcher("/appointment/*")).permitAll()
+                .requestMatchers(new AntPathRequestMatcher("/appointment/**")).permitAll()
+                .requestMatchers(new AntPathRequestMatcher("/appointment/")).permitAll()
+                .requestMatchers(new AntPathRequestMatcher("/updateAppointment/*")).permitAll()
+                .requestMatchers(new AntPathRequestMatcher("/updateAppointment/**")).permitAll()
+                .requestMatchers(new AntPathRequestMatcher("/updateAppointment/")).permitAll()
+                .requestMatchers(new AntPathRequestMatcher("/appointment/getAllAppointments/*")).permitAll()
+                .requestMatchers(new AntPathRequestMatcher("/appointment/getAllAppointments/**")).permitAll()
+                .requestMatchers(new AntPathRequestMatcher("/appointment/getAllAppointments/")).permitAll()
 
 
         .anyRequest().authenticated()

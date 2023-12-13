@@ -1,6 +1,7 @@
 package golden4.dronevisioner_backend.model;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -14,7 +15,6 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 public class Appointment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,19 +25,20 @@ public class Appointment {
     private LocalTime time;
 
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "captureDeviceid_fk")
     private CaptureDevice captureDevice;
 
+
     @OneToOne
     @JoinColumn(name = "customerid_fk")
-    //@JsonManagedReference
+    @JsonManagedReference
     private Customer customer;
-
 
     @OneToOne
     @JoinColumn(name = "paymentid_fk")
     private Payment payment;
+
 
 
 
