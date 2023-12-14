@@ -2,12 +2,9 @@ package golden4.dronevisioner_backend.service;
 
 import golden4.dronevisioner_backend.dto.AppointmentConverter;
 import golden4.dronevisioner_backend.dto.AppointmentDTO;
-import golden4.dronevisioner_backend.dto.CaptureDeviceDTO;
 import golden4.dronevisioner_backend.model.Appointment;
-import golden4.dronevisioner_backend.model.CaptureDevice;
 import golden4.dronevisioner_backend.repository.AppointmentRepository;
 import golden4.dronevisioner_backend.repository.CaptureDeviceRepository;
-import jakarta.persistence.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -64,13 +61,9 @@ public class AppointmentService
                 .collect(Collectors.toList());
     }
 
-        public Page<AppointmentDTO> getAllAppointments(Pageable pageable) {
-        Page<Appointment> appointmentsPage = appointmentRepository.findAll(pageable);
-        return appointmentsPage.map(appointmentConverter::toDTO);
-    }
 
-    public Page<AppointmentDTO> getAppointmentWithCustomerANDPayment(Pageable pageable) {
-        Page<Appointment> appointments = appointmentRepository.getAppointmentWithCustomerANDPayment(pageable);
+    public Page<AppointmentDTO> getAllAppointments(Pageable pageable) {
+        Page<Appointment> appointments = appointmentRepository.getAllAppointments(pageable);
         return appointments.map(appointmentConverter::toDTO);
     }
 

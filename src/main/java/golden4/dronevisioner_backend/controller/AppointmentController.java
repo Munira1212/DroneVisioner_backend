@@ -1,9 +1,6 @@
 package golden4.dronevisioner_backend.controller;
 
 import golden4.dronevisioner_backend.dto.AppointmentDTO;
-import golden4.dronevisioner_backend.dto.CaptureDeviceDTO;
-import golden4.dronevisioner_backend.model.Appointment;
-import golden4.dronevisioner_backend.repository.AppointmentRepository;
 import golden4.dronevisioner_backend.service.AppointmentService;
 import golden4.dronevisioner_backend.service.CaptureDeviceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,8 +43,8 @@ public class AppointmentController {
     }
 
     @GetMapping("getAllAppointments")
-    public ResponseEntity getAppointmentWithCustomerANDPayment(Pageable pageable) {
-        return new ResponseEntity<>(appointmentService.getAppointmentWithCustomerANDPayment( pageable), HttpStatus.OK);
+    public ResponseEntity getAllAppointments(Pageable pageable) {
+        return new ResponseEntity<>(appointmentService.getAllAppointments( pageable), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{appointment_ID}")
