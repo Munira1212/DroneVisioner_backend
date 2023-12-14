@@ -64,6 +64,10 @@ public class AppointmentService
                 .collect(Collectors.toList());
     }
 
+        public Page<AppointmentDTO> getAllAppointments(Pageable pageable) {
+        Page<Appointment> appointmentsPage = appointmentRepository.findAll(pageable);
+        return appointmentsPage.map(appointmentConverter::toDTO);
+    }
 
     public Page<AppointmentDTO> getAppointmentWithCustomerANDPayment(Pageable pageable) {
         Page<Appointment> appointments = appointmentRepository.getAppointmentWithCustomerANDPayment(pageable);
@@ -92,14 +96,15 @@ public class AppointmentService
 
 
     public AppointmentDTO updateAppointment(int appointment_ID, AppointmentDTO appointmentDTO) {
-        Optional<Appointment> optionalAppointment = appointmentRepository.findById(appointmentDTO.appointment_ID());
+        Optional<Appointment> optionalAppointment = appointmentRepository.findById(appointment_ID);
+
         if (optionalAppointment.isPresent()) {
             Appointment appointmentToUpdate = appointmentConverter.toEntity(appointmentDTO);
             appointmentToUpdate.setAppointment_ID(appointment_ID);
             appointmentRepository.save(appointmentToUpdate);
             return appointmentConverter.toDTO(appointmentToUpdate);
         } else {
-            throw new IllegalArgumentException("Movie not found" +appointmentDTO.appointment_ID());
+            throw new IllegalArgumentException("Appointment not found: " + appointment_ID);
         }
     }
 

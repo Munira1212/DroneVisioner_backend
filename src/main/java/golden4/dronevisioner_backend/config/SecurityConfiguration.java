@@ -6,7 +6,6 @@ import golden4.dronevisioner_backend.JwtFilter;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -53,10 +52,18 @@ public class SecurityConfiguration implements WebMvcConfigurer {
                 .requestMatchers(new AntPathRequestMatcher("/signup/*")).permitAll()
                 .requestMatchers(new AntPathRequestMatcher("/signup/**")).permitAll()
                 .requestMatchers(new AntPathRequestMatcher("/signup/")).permitAll()
-
-                .requestMatchers(new AntPathRequestMatcher("/appointment")).permitAll()
+                .requestMatchers(new AntPathRequestMatcher("/frontPageInternal/*")).permitAll()
+                .requestMatchers(new AntPathRequestMatcher("/frontPageInternal/**")).permitAll()
+                .requestMatchers(new AntPathRequestMatcher("/frontPageInternal/")).permitAll()
                 .requestMatchers(new AntPathRequestMatcher("/appointment/*")).permitAll()
                 .requestMatchers(new AntPathRequestMatcher("/appointment/**")).permitAll()
+                .requestMatchers(new AntPathRequestMatcher("/appointment/")).permitAll()
+                .requestMatchers(new AntPathRequestMatcher("/updateAppointment/*")).permitAll()
+                .requestMatchers(new AntPathRequestMatcher("/updateAppointment/**")).permitAll()
+                .requestMatchers(new AntPathRequestMatcher("/updateAppointment/")).permitAll()
+                .requestMatchers(new AntPathRequestMatcher("/appointment/getAllAppointments/*")).permitAll()
+                .requestMatchers(new AntPathRequestMatcher("/appointment/getAllAppointments/**")).permitAll()
+                .requestMatchers(new AntPathRequestMatcher("/appointment/getAllAppointments/")).permitAll()
                 .requestMatchers(new AntPathRequestMatcher("/captureDevice")).permitAll()
                 .requestMatchers(new AntPathRequestMatcher("/captureDevice/*")).permitAll()
                 .requestMatchers(new AntPathRequestMatcher("/captureDevice/**")).permitAll()
@@ -93,7 +100,7 @@ public class SecurityConfiguration implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         System.out.println("addCorsMappings called");
         registry.addMapping("/**")  // /** means match any string recursively
-                .allowedOriginPatterns("http://localhost:*") //Multiple strings allowed. Wildcard * matches all port numbers.
+                .allowedOriginPatterns("*") //Multiple strings allowed. Wildcard * matches all port numbers.
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "HEAD", "OPTIONS") // decide which methods to allow
                 .allowCredentials(true);
     }
@@ -103,7 +110,7 @@ public class SecurityConfiguration implements WebMvcConfigurer {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
-        config.addAllowedOrigin("http://localhost:63342");
+        config.addAllowedOrigin("http://localhost:*");
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
         source.registerCorsConfiguration("/**", config);

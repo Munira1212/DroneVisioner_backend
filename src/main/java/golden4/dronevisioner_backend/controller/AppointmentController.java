@@ -2,6 +2,8 @@ package golden4.dronevisioner_backend.controller;
 
 import golden4.dronevisioner_backend.dto.AppointmentDTO;
 import golden4.dronevisioner_backend.dto.CaptureDeviceDTO;
+import golden4.dronevisioner_backend.model.Appointment;
+import golden4.dronevisioner_backend.repository.AppointmentRepository;
 import golden4.dronevisioner_backend.service.AppointmentService;
 import golden4.dronevisioner_backend.service.CaptureDeviceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,11 +30,8 @@ public class AppointmentController {
     public AppointmentController(AppointmentService appointmentService, CaptureDeviceService captureDeviceService) {
         this.appointmentService = appointmentService;
         this.captureDeviceService = captureDeviceService;
+
     }
-
-
-
-
     @PostMapping()
     public ResponseEntity<AppointmentDTO> makeAppointment(@RequestBody AppointmentDTO appointmentDTO) {
         System.out.println(appointmentDTO);
