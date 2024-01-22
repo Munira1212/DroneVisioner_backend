@@ -87,7 +87,7 @@ public class AppointmentService
         // convertEntityToDTO(captureDevice);
     }
 
-
+//god til eksamen frø!!!
     public AppointmentDTO updateAppointment(int appointment_ID, AppointmentDTO appointmentDTO) {
         Optional<Appointment> optionalAppointment = appointmentRepository.findById(appointment_ID);
 

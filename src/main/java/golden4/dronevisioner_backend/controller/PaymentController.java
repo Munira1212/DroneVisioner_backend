@@ -32,11 +32,11 @@ public class PaymentController {
         return ResponseEntity.ok().build();
     }*/
 
-    @PostMapping("/updatePrice")
+    /*@PostMapping("/updatePrice")
     public ResponseEntity<PaymentDTO> makeAppointment(@RequestBody PaymentDTO paymentDTO) {
        PaymentDTO createdPayment = paymentService.createPayment(paymentDTO);
         return new ResponseEntity<>(createdPayment, HttpStatus.CREATED);
-    }
+    }*/
 
 
 

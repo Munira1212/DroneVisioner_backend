@@ -1,4 +1,4 @@
-package golden4.dronevisioner_backend.dto;
+/*package golden4.dronevisioner_backend.dto;
 import golden4.dronevisioner_backend.model.Payment;
 import org.springframework.stereotype.Component;
 
@@ -7,18 +7,18 @@ public class PaymentConverter {
 
     public Payment toEntity(PaymentDTO paymentDTO) {
         Payment payment = new Payment();
-        payment.setCaptureDevice_ID(paymentDTO.drone_ID());
+        payment.setPayment_ID(paymentDTO.drone_ID());
         payment.setPrice((int) paymentDTO.price());
         return payment;
     }
 
     public PaymentDTO toDTO(Payment payment) {
         return new PaymentDTO(
-                payment.getCaptureDevice_ID(),
+                payment.getPayment_ID(),
                 payment.getPrice());
 
     }
-}
+}*/
 
 
 /*

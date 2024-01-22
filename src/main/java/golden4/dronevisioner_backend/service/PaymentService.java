@@ -1,7 +1,7 @@
 package golden4.dronevisioner_backend.service;
 
 import golden4.dronevisioner_backend.dto.AppointmentDTO;
-import golden4.dronevisioner_backend.dto.PaymentConverter;
+//import golden4.dronevisioner_backend.dto.PaymentConverter;
 import golden4.dronevisioner_backend.dto.PaymentDTO;
 import golden4.dronevisioner_backend.expcetion.PaymentNotFoundException;
 import golden4.dronevisioner_backend.model.Payment;
@@ -15,28 +15,35 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class PaymentService {
+public class PaymentService
+{
 
     private PaymentRepository paymentRepository;
-    private PaymentConverter paymentConverter; // Assuming you have a PaymentConverter
+    //private PaymentConverter paymentConverter; // Assuming you have a PaymentConverter
 
-    @Autowired
+    /*@Autowired
     public PaymentService(PaymentRepository paymentRepository, PaymentConverter paymentConverter) {
         this.paymentRepository = paymentRepository;
         this.paymentConverter = paymentConverter;
-    }
+    }*/
 
-    public double getPriceForPayment(int paymentId) {
+    public double getPriceForPayment(int paymentId)
+    {
         Optional<Payment> paymentOptional = paymentRepository.findById(paymentId);
 
-        if (paymentOptional.isPresent()) {
+        if (paymentOptional.isPresent())
+        {
             return paymentOptional.get().getPrice();
-        } else {
+        }
+        else
+        {
             throw new PaymentNotFoundException("Payment not found with id: " + paymentId);
         }
     }
 
-    public PaymentDTO updatePriceForPayment(int paymentId, double newPrice) {
+}
+
+    /*public PaymentDTO updatePriceForPayment(int paymentId, double newPrice) {
         Payment payment = paymentRepository.findById(paymentId)
                 .orElseThrow(() -> new PaymentNotFoundException("Payment not found with id: " + paymentId));
 
